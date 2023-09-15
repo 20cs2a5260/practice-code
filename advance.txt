@@ -1,0 +1,23 @@
+select *,
+max(length) over(partition by rating) as max_len
+from film
+
+select *,
+row_number() over(partition by rating) as rn
+from film
+
+select *,
+row_number() over(partition by rating order by film_id) as rn
+from film
+
+select * from (
+select *,
+row_number() over(partition by rating order by film_id) as rn
+from film) f
+where f.rn < 3
+
+select * from (
+select *,
+rank() over(partition by rating order by length) as rank
+from film) f
+where f.rank < 3

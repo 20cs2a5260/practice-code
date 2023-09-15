@@ -1,0 +1,88 @@
+AGGRIGATE FUNCTION
+
+MIN
+ SELECT MIN(REPLACEMENT_COST) FROM FILM
+ 
+MAX 
+ SELECT MAX(REPLACEMENT_COST) FROM FILM
+ 
+AVG
+ SELECT AVG(REPLACEMENT_COST) FROM FILM
+
+round-
+ SELECT ROUND( MIN(replacement_cost),2)FROM film
+ 
+group by- right after from statement or a where statement
+
+select count(rental_rate),agg() from film
+where rantal_rate != '1'
+group by rental_rate
+
+select rental_rate,sum(length) as sum_of_length from film
+group by rental_rate
+
+select rental_rate,sum(length) as sum_of_length from film
+where rental_rate != 2.99
+group by rental_rate
+
+select customer_id,sum(amount) from payment
+group by customer_id
+order by sum(amount)
+
+select customer_id,sum(amount) from payment
+group by customer_id
+order by sum(amount) desc
+
+select customer_id,count(amount) from payment
+group by customer_id
+order by count(amount) desc
+
+select customer_id,staff_id,sum(amount) from payment
+group by customer_id,staff_id
+order by customer_id
+
+select date(payment_date) from payment(rmoves timestamp)
+
+select date(payment_date),count(amount) from payment
+group by date(payment_date)
+order by count(amount) desc
+
+CHALLENGE QUSTIONS
+1)
+select staff_id,count(amount) from payment
+group by staff_id
+order by count(amount) desc
+limit 1
+
+2)
+select rating,avg(replacement_cost) from film
+group by rating
+
+3)
+select customer_id,sum(amount) from payment
+group by customer_id
+order by sum(amount) desc
+limit 5
+
+HAVING- used only for aggrigate function
+
+select  customer_id,sum(amount)from  payment
+where customer_id!=184
+group by customer_id
+having sum(amount)>200
+
+select  customer_id,sum(amount)from  payment
+where customer_id not in (184,148)
+group by customer_id
+having sum(amount)>200
+
+select store_id,count(customer_id) from customer
+group by store_id
+
+select store_id,count(customer_id) from customer
+group by store_id
+having count(customer_id)>300
+
+
+
+
